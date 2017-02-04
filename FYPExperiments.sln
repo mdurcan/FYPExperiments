@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircleDetection", "CircleDetection\CircleDetection.csproj", "{5AEAC17C-BA78-4178-9BBE-7F7939E37A46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircleDetection_withVideoFile", "CircleDetection_withVideoFile\CircleDetection_withVideoFile.csproj", "{8C5908C1-2D00-493B-AC6E-CAE8DA334B97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundSubtraction", "BackgroundSubtraction\BackgroundSubtraction.csproj", "{483DA54B-372B-4B15-8901-CDE7174D376B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawingonVideo", "DrawingonVideo\DrawingonVideo.csproj", "{1398C69B-F374-4729-AF9E-9398D573651E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AEAC17C-BA78-4178-9BBE-7F7939E37A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AEAC17C-BA78-4178-9BBE-7F7939E37A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AEAC17C-BA78-4178-9BBE-7F7939E37A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AEAC17C-BA78-4178-9BBE-7F7939E37A46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C5908C1-2D00-493B-AC6E-CAE8DA334B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5908C1-2D00-493B-AC6E-CAE8DA334B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5908C1-2D00-493B-AC6E-CAE8DA334B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5908C1-2D00-493B-AC6E-CAE8DA334B97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483DA54B-372B-4B15-8901-CDE7174D376B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483DA54B-372B-4B15-8901-CDE7174D376B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483DA54B-372B-4B15-8901-CDE7174D376B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483DA54B-372B-4B15-8901-CDE7174D376B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1398C69B-F374-4729-AF9E-9398D573651E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1398C69B-F374-4729-AF9E-9398D573651E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1398C69B-F374-4729-AF9E-9398D573651E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1398C69B-F374-4729-AF9E-9398D573651E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
