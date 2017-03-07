@@ -16,3 +16,4 @@ C:\Users\Martin\documents\visual studio 2015\Projects\FYPExperiments\DrawingonVi
 C:\Users\Martin\documents\visual studio 2015\Projects\FYPExperiments\DrawingonVideo\obj\Debug\DrawingonVideo.csproj.GenerateResource.Cache
 C:\Users\Martin\documents\visual studio 2015\Projects\FYPExperiments\DrawingonVideo\obj\Debug\DrawingonVideo.exe
 C:\Users\Martin\documents\visual studio 2015\Projects\FYPExperiments\DrawingonVideo\obj\Debug\DrawingonVideo.pdb
+C:\Users\Martin\documents\visual studio 2015\Projects\FYPExperiments\DrawingonVideo\obj\Debug\DrawingonVideo.csprojResolveAssemblyReference.cache

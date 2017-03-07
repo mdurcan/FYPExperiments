@@ -47,6 +47,10 @@
             this.TotalFrame_text = new System.Windows.Forms.TextBox();
             this.FPS_text = new System.Windows.Forms.TextBox();
             this.CurrentFrame_Text = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.XYCo = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CurrentFrame_Image)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BackgroundFrame_Image)).BeginInit();
@@ -133,6 +137,7 @@
             this.CurrentFrame_Image.Location = new System.Drawing.Point(4, 21);
             this.CurrentFrame_Image.Name = "CurrentFrame_Image";
             this.CurrentFrame_Image.Size = new System.Drawing.Size(300, 293);
+            this.CurrentFrame_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.CurrentFrame_Image.TabIndex = 2;
             this.CurrentFrame_Image.TabStop = false;
             // 
@@ -143,6 +148,7 @@
             this.BackgroundFrame_Image.Location = new System.Drawing.Point(311, 21);
             this.BackgroundFrame_Image.Name = "BackgroundFrame_Image";
             this.BackgroundFrame_Image.Size = new System.Drawing.Size(300, 293);
+            this.BackgroundFrame_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.BackgroundFrame_Image.TabIndex = 2;
             this.BackgroundFrame_Image.TabStop = false;
             // 
@@ -153,6 +159,7 @@
             this.DifferenceFrame_Image.Location = new System.Drawing.Point(618, 21);
             this.DifferenceFrame_Image.Name = "DifferenceFrame_Image";
             this.DifferenceFrame_Image.Size = new System.Drawing.Size(300, 293);
+            this.DifferenceFrame_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.DifferenceFrame_Image.TabIndex = 2;
             this.DifferenceFrame_Image.TabStop = false;
             // 
@@ -163,8 +170,10 @@
             this.Object_Image.Location = new System.Drawing.Point(925, 21);
             this.Object_Image.Name = "Object_Image";
             this.Object_Image.Size = new System.Drawing.Size(302, 293);
+            this.Object_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Object_Image.TabIndex = 2;
             this.Object_Image.TabStop = false;
+            this.Object_Image.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Object_Image_MouseMove);
             // 
             // SearchFile_button
             // 
@@ -246,11 +255,49 @@
             this.CurrentFrame_Text.Size = new System.Drawing.Size(100, 20);
             this.CurrentFrame_Text.TabIndex = 9;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(1092, 16);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 10;
+            // 
+            // XYCo
+            // 
+            this.XYCo.Location = new System.Drawing.Point(1092, 42);
+            this.XYCo.Name = "XYCo";
+            this.XYCo.ReadOnly = true;
+            this.XYCo.Size = new System.Drawing.Size(100, 20);
+            this.XYCo.TabIndex = 11;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(971, 19);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(115, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Detected Co-Ordinates";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1019, 45);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(24, 13);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "X-Y";
+            // 
             // Win
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1255, 415);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.XYCo);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.CurrentFrame_Text);
             this.Controls.Add(this.FPS_text);
             this.Controls.Add(this.TotalFrame_text);
@@ -294,6 +341,10 @@
         private System.Windows.Forms.TextBox TotalFrame_text;
         private System.Windows.Forms.TextBox FPS_text;
         private System.Windows.Forms.TextBox CurrentFrame_Text;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox XYCo;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }
 

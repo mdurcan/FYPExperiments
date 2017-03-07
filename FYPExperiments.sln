@@ -7,9 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircleDetection", "CircleDe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircleDetection_withVideoFile", "CircleDetection_withVideoFile\CircleDetection_withVideoFile.csproj", "{8C5908C1-2D00-493B-AC6E-CAE8DA334B97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundSubtraction", "BackgroundSubtraction\BackgroundSubtraction.csproj", "{483DA54B-372B-4B15-8901-CDE7174D376B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundSubtractionWithBackgroundUpdate", "BackgroundSubtraction\BackgroundSubtractionWithBackgroundUpdate.csproj", "{483DA54B-372B-4B15-8901-CDE7174D376B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawingonVideo", "DrawingonVideo\DrawingonVideo.csproj", "{1398C69B-F374-4729-AF9E-9398D573651E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundSubtraction2", "BackgroundSubtraction2\BackgroundSubtraction2.csproj", "{A17A7D4C-D981-4161-B2C6-225D059485D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundSubtraction", "BackgroundSubtration\BackgroundSubtraction.csproj", "{74C91ADD-77BD-4CC7-94C4-6B7E83670DC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{1398C69B-F374-4729-AF9E-9398D573651E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1398C69B-F374-4729-AF9E-9398D573651E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1398C69B-F374-4729-AF9E-9398D573651E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A17A7D4C-D981-4161-B2C6-225D059485D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A17A7D4C-D981-4161-B2C6-225D059485D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A17A7D4C-D981-4161-B2C6-225D059485D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A17A7D4C-D981-4161-B2C6-225D059485D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74C91ADD-77BD-4CC7-94C4-6B7E83670DC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74C91ADD-77BD-4CC7-94C4-6B7E83670DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74C91ADD-77BD-4CC7-94C4-6B7E83670DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74C91ADD-77BD-4CC7-94C4-6B7E83670DC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
