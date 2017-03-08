@@ -118,7 +118,11 @@ namespace BackgroundSubtration
             //call the find object function
             List<CircleF> objects = GetMovingObjects();
 
-            //
+            // determine if moving objects are what is already being tracked or something new to track
+            DetermineTrackedObjects(objects);
+
+            //display the tracked objects
+            DisplayTrackedObjects();
 
             //display
             CurrentFrame_Image.Image = currentFrame;
@@ -146,7 +150,6 @@ namespace BackgroundSubtration
             List<CircleF> detectedObjects = new List<CircleF>();
             foreach (CircleF circle in circles)
             {
-                objectImage.Draw(circle, new Bgr(Color.Yellow), 2);
                 detectedObjects.Add(circle);
             }
             
@@ -208,6 +211,31 @@ namespace BackgroundSubtration
                 return true;
             }
             return false;
+        }
+
+
+        // display the tracked objects and there location
+        private void DisplayTrackedObjects()
+        {
+            foreach (TrackedObject tracked in trackedObjects)
+            {
+                //draw last circle and centre
+                objectImage.Draw(tracked.getLastCircle(), new Bgr(Color.Red), 4);
+                objectImage.Draw(new CircleF(tracked.getLastCircle().Center,1), new Bgr(Color.Red), 4);
+                //draw path
+                List<PointF> path = tracked.GetPath();
+                // if path length 1 no need to plot
+                if (path.Count == 1) return;
+                // gets first point
+                PointF pointA = path[0];
+                //plots all pointd
+                foreach (PointF pointB in path)
+                {
+                    LineSegment2DF line = new LineSegment2DF(pointA,pointB);
+                    objectImage.Draw(line,new Bgr(Color.Red), 2);
+                    pointA = pointB;
+                }
+            }
         }
 
 
