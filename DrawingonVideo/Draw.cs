@@ -73,7 +73,7 @@ namespace DrawingonVideo
             //sets up for first frame
             if (setup)
             {
-                videoWriter = new VideoWriter(@"C:\Users\Martin\Documents\4th_year\FYP\testData\Testresult2.avi",
+                videoWriter = new VideoWriter(@"C:\Users\Martin\Documents\4th_year\FYP\testData\ATestCompare1.avi",
                     VideoWriter.Fourcc('M', 'S', 'V', 'C'),
                     (int) capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps),
                     new Size(capture.Width, capture.Height),

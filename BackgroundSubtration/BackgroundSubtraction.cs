@@ -32,6 +32,8 @@ namespace BackgroundSubtration
         private bool waitaframe = false;
         // tracking objects
         private List<TrackedObject> trackedObjects;
+        //for testing
+        private Capture compareCapture = null;
 
         public BackgroundSubtraction()
         {
@@ -66,22 +68,64 @@ namespace BackgroundSubtration
                 file = @choosefile.FileName;
             }
 
-            //set Capture and enable play
+            //set Capture 
             capture = new Capture(file);
-            NextFrame_button.Enabled = true;
             FilePath.Text = file;
             //get and display total frames
             TotalFrame = (int)capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameCount);
             TotalFrame_text.Text = TotalFrame.ToString();
             // current frame
             CurrentFrame_Text.Text = FrameNum.ToString();
+
+            // display fps
+            FPS_text.Text = capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps).ToString();
+
+            // set image box size
+            int height = capture.Height/4;
+            int width = capture.Width/4;
+            CurrentFrame_Image.Size = new Size(width,height);
+            BackgroundFrame_Image.Size = new Size(width,height);
+            DifferenceFrame_Image.Size=new Size(width,height);
+            Object_Image.Size = new Size(width,height);
+
+            // select the compare file for testing 
+            CompareFileSearch.Enabled = true;
         }
+
+
+        // Select the fle that will be used for comparsion
+        private void CompareFileSearch_Click(object sender, EventArgs e)
+        {
+           
+
+            //file explorer to get comparison video file
+            OpenFileDialog choosefile = new OpenFileDialog();
+            choosefile.Filter = @"Media Files| * .mpg;* .avi;* .wma;* .MOV;* .wav;* .mp3;* .mp4;* .wmv | All Files | *.*";
+            choosefile.Multiselect = false;
+            string compareFile=null;
+
+            if (choosefile.ShowDialog() == DialogResult.OK)
+            {
+                 compareFile= @choosefile.FileName;
+            }
+
+            // if no file choosen
+            if(compareFile==null)return;
+            // set compare capture
+            compareCapture = new Capture(compareFile);
+            CompareFilePath.Text = compareFile;
+            
+            // enable play
+            NextFrame_button.Enabled = true;
+        }
+
 
         private void NextFrame_button_Click(object sender, EventArgs e)
         {
             //check if at end of file
             if (FrameNum >= TotalFrame)
             {
+                CompareFileSearch.Enabled = false;
                 NextFrame_button.Enabled = false;
                 return;
             }
@@ -98,10 +142,14 @@ namespace BackgroundSubtration
             // set background
             if (backgroundFrame == null)
             {
+                // sets the first frame as background
                 Image<Bgr, byte> image = (capture.QueryFrame()).ToImage<Bgr, byte>();
                 CurrentFrame_Image.Image = image;
                 backgroundFrame = image.Convert<Gray, byte>();
                 BackgroundFrame_Image.Image = backgroundFrame;
+                // start the compareing for testing
+                Image<Bgr, byte> cimage = (compareCapture.QueryFrame()).ToImage<Bgr, byte>();
+                Object_Image.Image = cimage;
                 return;
             }
 
@@ -109,6 +157,10 @@ namespace BackgroundSubtration
             currentFrame = (capture.QueryFrame()).ToImage<Bgr, byte>();
             currentFrameGray = currentFrame.Convert<Gray, byte>();
             currentFrameGray = currentFrameGray.SmoothGaussian(7);
+
+            // get the object image window that will be used for testing
+            objectImage = (compareCapture.QueryFrame()).ToImage<Bgr, byte>();
+            Object_Image.Image = objectImage;
 
             // get Difference
             differenceFrame = backgroundFrame.AbsDiff(currentFrameGray);
@@ -121,6 +173,9 @@ namespace BackgroundSubtration
             // determine if moving objects are what is already being tracked or something new to track
             DetermineTrackedObjects(objects);
 
+            //Check if the tracked object has been updated, if not delete
+            CleanTrackedObjects();
+            
             //display the tracked objects
             DisplayTrackedObjects();
 
@@ -136,7 +191,7 @@ namespace BackgroundSubtration
         {
             double dblAccumRes = 2.0;   //resolution used to detect the centre of the cirlces
             double dblMinDistBetweenCircles = differenceFrame.Height / 4;   //min distance from detected centers of detected circles
-            int intMinRaduis = 10;      // min raduis of circles
+            int intMinRaduis = differenceFrame.Height / 10;      // min raduis of circles
             int intMaxRaduis = differenceFrame.Height / 2;    // max raduis of circles
 
             //finds all circles
@@ -145,8 +200,7 @@ namespace BackgroundSubtration
                     dblAccumRes,
                     dblMinDistBetweenCircles, intMinRaduis, intMaxRaduis)[0];
 
-            //for now draw all circles, and create list of circles to return 
-            objectImage = currentFrame;
+            //create list of circles to return 
             List<CircleF> detectedObjects = new List<CircleF>();
             foreach (CircleF circle in circles)
             {
@@ -177,18 +231,39 @@ namespace BackgroundSubtration
                     foreach (TrackedObject tracked in trackedObjects)
                     {
                         // check similarty, to see if same object being tracked
-                        if (CheckSimilarity(detectedObject, tracked.getLastCircle()))
+                        if (CheckSimilarity(detectedObject, tracked.getLastCircle()) && !tracked.CheckIfUpdated())
                         {
                             //adds to the tracked object new detection
                             tracked.AddNewDetection(detectedObject);
+                            tracked.Update(true);
                             NewTrackedObject = false;
-                        } 
+                        }
                     }
                     //if not new detection of an object it creates a new tracked object
                     if (NewTrackedObject)
                     {
                         trackedObjects.Add(new TrackedObject(detectedObject));
                     }
+                }
+            }
+        }
+
+
+        // Check tracked objects delete inactive
+        private void CleanTrackedObjects()
+        {
+            if (trackedObjects.Count == 1) return;
+
+            //goes through tracked objects a deletes unpdated 
+            for (int i = 0; i < trackedObjects.Count; i++)
+            {
+                if (!trackedObjects[i].CheckIfUpdated())
+                {
+                    trackedObjects.RemoveAt(i);
+                }
+                else
+                {
+                    trackedObjects[i].Update(false);
                 }
             }
         }
@@ -217,8 +292,16 @@ namespace BackgroundSubtration
         // display the tracked objects and there location
         private void DisplayTrackedObjects()
         {
+            // clears the detected x y co-ordinate field to display co ordinates
+            DetectedXY.Text = string.Empty;
+
+            
             foreach (TrackedObject tracked in trackedObjects)
             {
+                // display the detected co ordinates
+                PointF centre = tracked.getLastCircle().Center;
+                DetectedXY.Text = DetectedXY.Text + $"X: {centre.X/4}; Y: {centre.Y/4} ;";
+
                 //draw last circle and centre
                 objectImage.Draw(tracked.getLastCircle(), new Bgr(Color.Red), 4);
                 objectImage.Draw(new CircleF(tracked.getLastCircle().Center,1), new Bgr(Color.Red), 4);
@@ -244,5 +327,6 @@ namespace BackgroundSubtration
         {
             XYCo.Text = $"X: {e.X}; Y: {e.Y}";
         }
+        
     }
 }

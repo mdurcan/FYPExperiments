@@ -12,18 +12,26 @@ namespace BackgroundSubtraction
     {
         //variable
         private List<CircleF> Detections;
+        private bool Updated;
 
         // constructor
         public TrackedObject(CircleF circle)
         {
             Detections = new List<CircleF>();
-            Detections.Add(circle); 
+            Detections.Add(circle);
+            Updated = true;
         }
 
         // add circles to detected
         public void AddNewDetection(CircleF circle)
         {
             Detections.Add(circle);
+        }
+
+        //if updated or not
+        public void Update(bool result)
+        {
+            Updated = result;
         }
 
         // get the circles list
@@ -47,6 +55,12 @@ namespace BackgroundSubtraction
         public CircleF getLastCircle()
         {
             return Detections[Detections.Count - 1];
+        }
+
+        //Check if it has been Updated
+        public bool CheckIfUpdated()
+        {
+            return Updated;
         }
     }
 }
