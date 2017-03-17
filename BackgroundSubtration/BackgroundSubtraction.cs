@@ -191,7 +191,7 @@ namespace BackgroundSubtration
         {
             double dblAccumRes = 2.0;   //resolution used to detect the centre of the cirlces
             double dblMinDistBetweenCircles = differenceFrame.Height / 4;   //min distance from detected centers of detected circles
-            int intMinRaduis = differenceFrame.Height / 10;      // min raduis of circles
+            int intMinRaduis = 10;      // min raduis of circles
             int intMaxRaduis = differenceFrame.Height / 2;    // max raduis of circles
 
             //finds all circles
