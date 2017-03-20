@@ -13,19 +13,30 @@ namespace BackgroundSubtraction
         //variable
         private List<CircleF> Detections;
         private bool Updated;
+        private List<PointF> CirclePath;
+        private List<int> frames;
 
         // constructor
-        public TrackedObject(CircleF circle)
+        public TrackedObject(CircleF circle,int frame)
         {
+            //adds circle
             Detections = new List<CircleF>();
             Detections.Add(circle);
+            //adds centre to path
+            CirclePath = new List<PointF>();
+            CirclePath.Add(circle.Center);
+            // adds the frame it was detected in
+            frames = new List<int>();
+            frames.Add(frame);
             Updated = true;
         }
 
         // add circles to detected
-        public void AddNewDetection(CircleF circle)
+        public void AddNewDetection(CircleF circle, int frame)
         {
             Detections.Add(circle);
+            CirclePath.Add(circle.Center);
+            frames.Add(frame);
         }
 
         //if updated or not
@@ -43,12 +54,7 @@ namespace BackgroundSubtraction
         // get the list of points that make up the path
         public List<PointF> GetPath()
         {
-            List<PointF> path = new List<PointF>();
-            foreach (CircleF circle in Detections)
-            {
-                path.Add(circle.Center);
-            }
-            return path;
+            return CirclePath;
         }
 
         // gets the last circle entered

@@ -219,7 +219,7 @@ namespace BenchDemo
             {
                 foreach (CircleF objects in detections)
                 {
-                    trackedObjects.Add(new TrackedObject(objects));
+                    trackedObjects.Add(new TrackedObject(objects,FrameNum));
                 }
             }
             else
@@ -234,7 +234,7 @@ namespace BenchDemo
                         if (CheckSimilarity(detectedObject, tracked.getLastCircle()) && !tracked.CheckIfUpdated())
                         {
                             //adds to the tracked object new detection
-                            tracked.AddNewDetection(detectedObject);
+                            tracked.AddNewDetection(detectedObject, FrameNum);
                             tracked.Update(true);
                             NewTrackedObject = false;
                         }
@@ -242,7 +242,7 @@ namespace BenchDemo
                     //if not new detection of an object it creates a new tracked object
                     if (NewTrackedObject)
                     {
-                        trackedObjects.Add(new TrackedObject(detectedObject));
+                        trackedObjects.Add(new TrackedObject(detectedObject, FrameNum));
                     }
                 }
             }
@@ -259,7 +259,7 @@ namespace BenchDemo
             {
                 if (!trackedObjects[i].CheckIfUpdated() && trackedObjects[i].GetPath().Count ==1)
                 {
-                    trackedObjects.RemoveAt(i);
+                   // trackedObjects.RemoveAt(i);
                 }
                 else
                 {

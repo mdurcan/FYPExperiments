@@ -99,8 +99,8 @@ namespace DrawingonVideo
             //get current frame
             currentFrame= (capture.QueryFrame()).ToImage<Bgr, byte>();
             //get difference in size
-            Image.Width = currentFrame.Width/2;
-            Image.Height = currentFrame.Height/2;
+            Image.Width = Convert.ToInt32(currentFrame.Width/1.5);
+            Image.Height = Convert.ToInt32(currentFrame.Height/1.5);
 
             //set
             Image.Image = currentFrame;
@@ -115,7 +115,7 @@ namespace DrawingonVideo
             if (!centreSelected)
             {
                 //centre of object
-                centre = new Point(e.X * 2, e.Y *2);
+                centre = new Point(e.X , e.Y );
                 //draws dot
                 CircleF circle = new CircleF(centre, 1);
                 newFrame.Draw(circle, new Bgr(Color.Blue), 6);
@@ -132,7 +132,7 @@ namespace DrawingonVideo
             if (centreSelected && !boxDrawn)
             {
                 // get upper corner of box
-                upperRCorner = new Point(e.X*2,e.Y*2);
+                upperRCorner = new Point(e.X,e.Y);
                 //enables drawing
                 drawing = true;
             }
@@ -143,7 +143,7 @@ namespace DrawingonVideo
             if (drawing)
             {
                 //get bottom corner
-                lowerLCorner = new Point(e.X * 2, e.Y * 2);
+                lowerLCorner = new Point(e.X , e.Y );
 
                 //draw box on new frame
                 Rectangle box = new Rectangle(upperRCorner.X, upperRCorner.Y, (lowerLCorner.X - upperRCorner.X),

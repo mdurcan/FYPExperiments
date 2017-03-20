@@ -23,7 +23,7 @@ namespace CreateVideo
             InitializeComponent();
 
             //creates the video
-            videoWriter = new VideoWriter(@"C:\Users\Martin\Documents\4th_year\FYP\testData\ATest1.avi",
+            videoWriter = new VideoWriter(@"C:\Users\Martin\Documents\4th_year\FYP\testData\ATest2.avi",
                     VideoWriter.Fourcc('M', 'S', 'V', 'C'),
                     20,
                     new Size(1170, 878),

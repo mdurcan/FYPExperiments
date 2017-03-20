@@ -81,8 +81,8 @@ namespace BackgroundSubtration
             FPS_text.Text = capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps).ToString();
 
             // set image box size
-            int height = capture.Height/4;
-            int width = capture.Width/4;
+            int height = capture.Height/3;
+            int width = capture.Width/3;
             CurrentFrame_Image.Size = new Size(width,height);
             BackgroundFrame_Image.Size = new Size(width,height);
             DifferenceFrame_Image.Size=new Size(width,height);
@@ -300,7 +300,7 @@ namespace BackgroundSubtration
             {
                 // display the detected co ordinates
                 PointF centre = tracked.getLastCircle().Center;
-                DetectedXY.Text = DetectedXY.Text + $"X: {centre.X/4}; Y: {centre.Y/4} ;";
+                DetectedXY.Text = DetectedXY.Text + $"X: {centre.X/3}; Y: {centre.Y/3} ;";
 
                 //draw last circle and centre
                 objectImage.Draw(tracked.getLastCircle(), new Bgr(Color.Red), 4);
